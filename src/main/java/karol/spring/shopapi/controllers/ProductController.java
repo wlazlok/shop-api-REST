@@ -27,4 +27,10 @@ public class ProductController {
     public ProductDTOShortViewList getAllProductsShortView(){
         return new ProductDTOShortViewList(productService.getAllProductShortView());
     }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public ProductDTO createNewProduct(@RequestBody ProductDTO productDTO){
+        return productService.createNewProduct(productDTO);
+    }
 }

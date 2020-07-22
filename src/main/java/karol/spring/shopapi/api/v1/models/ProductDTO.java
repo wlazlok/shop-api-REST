@@ -1,8 +1,10 @@
 package karol.spring.shopapi.api.v1.models;
 
 import karol.spring.shopapi.models.Category;
+import karol.spring.shopapi.repositories.CategoryRepository;
 import lombok.Data;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 public class ProductDTO {
@@ -78,5 +80,6 @@ public class ProductDTO {
 
     public void setCategory(Category category) {
         this.category = category;
+
     }
 }

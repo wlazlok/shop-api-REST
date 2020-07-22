@@ -9,4 +9,6 @@ public interface ProductService {
     ProductDTO getProductById(Long id);
 
     List<ProductDTOShortView> getAllProductShortView();
+
+    ProductDTO createNewProduct(ProductDTO productDTO);
 }
