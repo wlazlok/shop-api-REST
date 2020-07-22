@@ -18,4 +18,9 @@ public class ExceptionHandler {
     public ResponseEntity<Object> handleValueNotFoundException(Exception exception, WebRequest request){
         return new ResponseEntity<Object>("Value not found!" + new HttpHeaders(), HttpStatus.NOT_FOUND);
     }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(ValueExsistException.class)
+    public ResponseEntity<Object> handleValueExistsException(Exception exception, WebRequest request){
+        return new ResponseEntity<Object>("Value exists in database" + new HttpHeaders(), HttpStatus.NOT_FOUND);
+    }
 }

@@ -3,6 +3,7 @@ package karol.spring.shopapi.services;
 import karol.spring.shopapi.api.v1.mappers.CategoryMapper;
 import karol.spring.shopapi.api.v1.models.CategoryDTO;
 import karol.spring.shopapi.exceptions.NullValueException;
+import karol.spring.shopapi.exceptions.ValueExsistException;
 import karol.spring.shopapi.exceptions.ValueNotFoundException;
 import karol.spring.shopapi.models.Category;
 import karol.spring.shopapi.repositories.CategoryRepository;
@@ -34,6 +35,8 @@ public class CategoryServiceImpl implements CategoryService {
     public CategoryDTO createNewCategory(CategoryDTO categoryDTO) {
         Category category = categoryMapper.categoryDTOToCategoy(categoryDTO);
 
+        checkIfValueNotExsistInBase(categoryDTO);
+
         if(category.getName() == null)
             throw new NullValueException();
 
@@ -42,6 +45,14 @@ public class CategoryServiceImpl implements CategoryService {
         CategoryDTO returnDTO = categoryMapper.categoryToCategorDTO(savedCategory);
 
         return returnDTO;
+    }
+
+    private void checkIfValueNotExsistInBase(CategoryDTO categoryDTO) {
+        List<Category> categories = categoryRepository.findAll();
+        for (Category cat : categories) {
+            if (cat.getName().equals(categoryDTO.getName()))
+                throw new ValueExsistException();
+        }
     }
 
     @Override
@@ -54,6 +65,19 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryRepository.findById(id)
                 .map(categoryMapper::categoryToCategorDTO)
                 .orElseThrow(ValueNotFoundException::new);
+    }
+
+    @Override
+    public CategoryDTO updateCategoryById(Long id, CategoryDTO categoryDTO) {
+        return categoryRepository.findById(id).map(category ->{
+
+            checkIfValueNotExsistInBase(categoryDTO);
+            if(categoryDTO.getName() != null)
+                category.setName(categoryDTO.getName());
+
+            return categoryMapper.categoryToCategorDTO(categoryRepository.save(category));
+
+        }).orElseThrow(ValueNotFoundException::new);
     }
 
 }
