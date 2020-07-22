@@ -1,10 +1,8 @@
 package karol.spring.shopapi.models;
 
 import lombok.Data;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -15,6 +13,9 @@ public class Category {
     private Long id;
 
     private String name;
+
+    @OneToOne
+    Product product;
 
     public Long getId() {
         return id;
@@ -30,5 +31,13 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
