@@ -11,6 +11,7 @@ import karol.spring.shopapi.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,6 +30,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDTO getProductById(Long id) {
+
         return productRepository.findById(id)
                 .map(productMapper::productToProductDTO)
                 .orElseThrow(ValueNotFoundException::new);
@@ -43,8 +45,31 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDTO createNewProduct(ProductDTO productDTO) {
-        //todo Dokonczyc tworzenie nowego produktu (blad z kategoria !)  !!!
+
         Product product = productMapper.productDTOToProduct(productDTO);
+
+        List<Category> categories = categoryRepository.findAll();
+
+        for (Category cat: categories) {
+            System.out.println("cat: " + cat.getName() + " prod: " + product.getCategory().getName());
+            if(cat.getName().equals(product.getCategory().getName())) {
+                product.setCategory(cat);
+
+                Product savedProduct = productRepository.save(product);
+
+                ProductDTO returnDTO = productMapper.productToProductDTO(savedProduct);
+
+                return returnDTO;
+            }
+        }
+
+        Category catToSave = new Category();
+
+        catToSave.setName(product.getCategory().getName());
+
+        Category savedCategory = categoryRepository.save(catToSave);
+
+        product.setCategory(savedCategory);
 
         Product savedProduct = productRepository.save(product);
 
