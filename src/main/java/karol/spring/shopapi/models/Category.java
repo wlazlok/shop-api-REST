@@ -3,6 +3,8 @@ package karol.spring.shopapi.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -14,8 +16,8 @@ public class Category {
 
     private String name;
 
-    @OneToOne
-    Product product;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    List<Product> product = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -31,6 +33,14 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Product> getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product.add(product);
     }
 
     @Override
