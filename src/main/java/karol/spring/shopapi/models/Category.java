@@ -1,23 +1,25 @@
 package karol.spring.shopapi.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
 @Entity
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
-    List<Product> product = new ArrayList<>();
+
+    @OneToMany(mappedBy = "category")
+    private List<Product> products = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -35,19 +37,11 @@ public class Category {
         this.name = name;
     }
 
-    public List<Product> getProduct() {
-        return product;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setProduct(Product product) {
-        this.product.add(product);
-    }
-
-    @Override
-    public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }

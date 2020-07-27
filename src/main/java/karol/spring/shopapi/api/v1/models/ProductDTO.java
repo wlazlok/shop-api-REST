@@ -6,7 +6,7 @@ import lombok.Data;
 import java.time.LocalDate;
 import java.util.List;
 
-@Data
+
 public class ProductDTO {
 
     private Long id;
@@ -16,7 +16,7 @@ public class ProductDTO {
     private String producer;
     private LocalDate producedDate;
     private LocalDate expiryDate;
-    Category category;
+    private Category category;
 
     public Long getId() {
         return id;
@@ -80,6 +80,5 @@ public class ProductDTO {
 
     public void setCategory(Category category) {
         this.category = category;
-
     }
 }

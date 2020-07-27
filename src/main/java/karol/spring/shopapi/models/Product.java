@@ -1,5 +1,7 @@
 package karol.spring.shopapi.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -12,6 +14,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
 
     private String name;
@@ -25,7 +28,9 @@ public class Product {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate expiryDate;
 
-    @OneToOne
+    @JsonIgnore
+    @ManyToOne(optional = false)
+    @JoinColumn(name="category_id", nullable = false)
     Category category;
 
     public Long getId() {
@@ -91,4 +96,5 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
+
 }

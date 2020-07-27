@@ -15,4 +15,5 @@ public interface ProductMapper {
     Product productDTOToProduct(ProductDTO productDTO);
 
     ProductDTOShortView productToProductShorView(Product product);
+
 }

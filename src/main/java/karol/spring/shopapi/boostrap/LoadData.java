@@ -34,7 +34,6 @@ public class LoadData implements CommandLineRunner {
 
         Category magazines = new Category();
         magazines.setName("Magazines");
-        categoryRepository.save(magazines);
 
         Product niceBook = new Product();
         niceBook.setName("Harry Potter");
@@ -42,7 +41,12 @@ public class LoadData implements CommandLineRunner {
         niceBook.setDescription("Very interesting book");
         niceBook.setProducedDate(LocalDate.now());
         niceBook.setCategory(books);
+        niceBook.setCategory(books);
+        books.getProducts().add(niceBook);
+        categoryRepository.save(magazines);
         productRepository.save(niceBook);
 
+        System.out.println("List size: " + books.getProducts().size());
+        System.out.println("Cateogry: " + niceBook.getCategory());
     }
 }

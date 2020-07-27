@@ -11,4 +11,5 @@ public interface ProductService {
     List<ProductDTOShortView> getAllProductShortView();
 
     ProductDTO createNewProduct(ProductDTO productDTO);
+
 }
