@@ -2,6 +2,7 @@ package karol.spring.shopapi.controllers;
 
 import karol.spring.shopapi.api.v1.models.CategoryDTO;
 import karol.spring.shopapi.api.v1.models.CategoryDTOList;
+import karol.spring.shopapi.api.v1.models.CategoryDTOShortViewList;
 import karol.spring.shopapi.services.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +21,8 @@ public class CategoryController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public CategoryDTOList getAllCategories(){
-        return new CategoryDTOList(categoryService.getAllCategories());
+    public CategoryDTOShortViewList getAllCategories(){
+        return new CategoryDTOShortViewList(categoryService.getAllCategoriesShortView());
     }
 
     @PostMapping

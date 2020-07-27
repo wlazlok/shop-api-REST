@@ -1,6 +1,8 @@
 package karol.spring.shopapi.services;
 
 import karol.spring.shopapi.api.v1.models.CategoryDTO;
+import karol.spring.shopapi.api.v1.models.CategoryDTOShortView;
+
 import java.util.List;
 
 public interface CategoryService {
@@ -13,4 +15,6 @@ public interface CategoryService {
     CategoryDTO getCategoryById(Long id);
 
     CategoryDTO updateCategoryById(Long id, CategoryDTO categoryDTO);
+
+    List<CategoryDTOShortView> getAllCategoriesShortView();
 }

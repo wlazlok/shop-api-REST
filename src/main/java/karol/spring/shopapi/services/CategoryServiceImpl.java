@@ -2,6 +2,7 @@ package karol.spring.shopapi.services;
 
 import karol.spring.shopapi.api.v1.mappers.CategoryMapper;
 import karol.spring.shopapi.api.v1.models.CategoryDTO;
+import karol.spring.shopapi.api.v1.models.CategoryDTOShortView;
 import karol.spring.shopapi.exceptions.NullValueException;
 import karol.spring.shopapi.exceptions.ValueExsistException;
 import karol.spring.shopapi.exceptions.ValueNotFoundException;
@@ -78,6 +79,13 @@ public class CategoryServiceImpl implements CategoryService {
             return categoryMapper.categoryToCategorDTO(categoryRepository.save(category));
 
         }).orElseThrow(ValueNotFoundException::new);
+    }
+
+    @Override
+    public List<CategoryDTOShortView> getAllCategoriesShortView() {
+        return categoryRepository.findAll()
+                .stream().map(categoryMapper::categoryToCategoryShorView)
+                .collect(Collectors.toList());
     }
 
 }

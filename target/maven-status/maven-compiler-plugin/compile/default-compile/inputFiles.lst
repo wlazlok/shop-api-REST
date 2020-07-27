@@ -1,5 +1,7 @@
+C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\api\v1\models\CategoryDTOShortViewList.java
 C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\api\v1\models\ProductDTO.java
 C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\api\v1\models\ProductDTOShortView.java
+C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\api\v1\models\CategoryDTOShortView.java
 C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\services\ProductService.java
 C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\services\CategoryServiceImpl.java
 C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\exceptions\ValueExsistException.java
@@ -9,7 +11,6 @@ C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\services
 C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\api\v1\mappers\ProductMapper.java
 C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\controllers\CategoryController.java
 C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\repositories\CategoryRepository.java
-C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\api\v1\models\ProductSave.java
 C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\ShopApiApplication.java
 C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\repositories\ProductRepository.java
 C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\controllers\ProductController.java

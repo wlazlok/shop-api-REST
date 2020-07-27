@@ -3,6 +3,7 @@ package karol.spring.shopapi.api.v1.models;
 import java.util.List;
 
 public class ProductDTOShortViewList {
+
     List<ProductDTOShortView> productsShortView;
 
     public ProductDTOShortViewList(List<ProductDTOShortView> productsShortView) {

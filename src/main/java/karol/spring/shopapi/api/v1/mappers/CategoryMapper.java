@@ -1,7 +1,9 @@
 package karol.spring.shopapi.api.v1.mappers;
 
 import karol.spring.shopapi.api.v1.models.CategoryDTO;
+import karol.spring.shopapi.api.v1.models.CategoryDTOShortView;
 import karol.spring.shopapi.api.v1.models.ProductDTO;
+import karol.spring.shopapi.api.v1.models.ProductDTOShortView;
 import karol.spring.shopapi.models.Category;
 import karol.spring.shopapi.models.Product;
 import org.mapstruct.Mapper;
@@ -17,4 +19,6 @@ public interface CategoryMapper {
     CategoryDTO categoryToCategorDTO(Category category);
 
     Category categoryDTOToCategoy(CategoryDTO categoryDTO);
+
+    CategoryDTOShortView categoryToCategoryShorView(Category category);
 }
