@@ -18,7 +18,7 @@ public class Category {
     private String name;
 
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "category")
     private List<Product> products = new ArrayList<>();
 
     public Long getId() {

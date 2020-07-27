@@ -30,7 +30,7 @@ public class Product {
 
     @JsonIgnore
     @ManyToOne(optional = false)
-    @JoinColumn(name="category_id", nullable = false)
+    @JoinColumn(name="category_id")
     Category category;
 
     public Long getId() {

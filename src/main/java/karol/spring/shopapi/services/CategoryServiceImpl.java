@@ -7,7 +7,9 @@ import karol.spring.shopapi.exceptions.NullValueException;
 import karol.spring.shopapi.exceptions.ValueExsistException;
 import karol.spring.shopapi.exceptions.ValueNotFoundException;
 import karol.spring.shopapi.models.Category;
+import karol.spring.shopapi.models.Product;
 import karol.spring.shopapi.repositories.CategoryRepository;
+import karol.spring.shopapi.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,10 +20,12 @@ public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
     private final CategoryMapper categoryMapper;
+    private final ProductRepository productRepository;
 
-    public CategoryServiceImpl(CategoryRepository categoryRepository, CategoryMapper categoryMapper) {
+    public CategoryServiceImpl(CategoryRepository categoryRepository, CategoryMapper categoryMapper, ProductRepository productRepository) {
         this.categoryRepository = categoryRepository;
         this.categoryMapper = categoryMapper;
+        this.productRepository = productRepository;
     }
 
     @Override
@@ -58,6 +62,20 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void deleteById(Long id) {
+
+        Category category = categoryRepository.findById(id).get();
+
+        List<Product> products = category.getProducts();
+        
+        Category noCategory = categoryRepository.findById(3L).get();
+
+        for (Product pr: products) {
+            pr.setCategory(noCategory);
+            productRepository.save(pr);
+        }
+        category.getProducts().clear();
+        categoryRepository.save(category);
+
         categoryRepository.deleteById(id);
     }
 
@@ -87,5 +105,4 @@ public class CategoryServiceImpl implements CategoryService {
                 .stream().map(categoryMapper::categoryToCategoryShorView)
                 .collect(Collectors.toList());
     }
-
 }

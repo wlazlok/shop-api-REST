@@ -48,5 +48,10 @@ public class LoadData implements CommandLineRunner {
 
         System.out.println("List size: " + books.getProducts().size());
         System.out.println("Cateogry: " + niceBook.getCategory());
+
+        Category noCateogry = new Category();
+        noCateogry.setName("No Category");
+        noCateogry.setId(10L);
+        categoryRepository.save(noCateogry);
     }
 }
