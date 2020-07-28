@@ -66,7 +66,7 @@ public class CategoryServiceImpl implements CategoryService {
         Category category = categoryRepository.findById(id).get();
 
         List<Product> products = category.getProducts();
-        
+
         Category noCategory = categoryRepository.findById(3L).get();
 
         for (Product pr: products) {
