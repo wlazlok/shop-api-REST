@@ -16,6 +16,7 @@ Project is created with:
 * Spring Boot version 2.3.1
 * Spring Data
 * Spring Web
+* Spring MVC
 * H2 Database version 1.4.200
 * JUnit 5
 * Mockito
