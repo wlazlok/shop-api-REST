@@ -10,4 +10,6 @@ public interface ProducerService {
     List<ProducerDTOShortView> getAllProducers();
 
     ProducerDTO getProducerById(Long id);
+
+    ProducerDTO createNewProducer(ProducerDTO producerDTO);
 }
