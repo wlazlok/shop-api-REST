@@ -12,4 +12,5 @@ public interface ProductService {
 
     ProductDTO createNewProduct(ProductDTO productDTO);
 
+    void deleteById(Long id);
 }

@@ -50,7 +50,6 @@ public class ProductServiceImpl implements ProductService {
         List<Category> categories = categoryRepository.findAll();
 
         for (Category cat: categories) {
-            System.out.println("cat: " + cat.getName() + " prod: " + product.getCategory().getName());
             if(cat.getName().equals(product.getCategory().getName())) {
                 product.setCategory(cat);
 
@@ -75,5 +74,10 @@ public class ProductServiceImpl implements ProductService {
         ProductDTO returnDTO = productMapper.productToProductDTO(savedProduct);
 
         return returnDTO;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        productRepository.deleteById(id);
     }
 }

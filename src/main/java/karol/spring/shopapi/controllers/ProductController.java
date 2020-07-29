@@ -33,4 +33,10 @@ public class ProductController {
     public ProductDTO createNewProduct(@RequestBody ProductDTO productDTO){
         return productService.createNewProduct(productDTO);
     }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteProductById(@PathVariable Long id){
+        productService.deleteById(id);
+    }
 }

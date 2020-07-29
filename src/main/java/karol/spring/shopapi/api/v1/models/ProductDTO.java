@@ -63,7 +63,12 @@ public class ProductDTO {
     }
 
     public void setProducedDate(LocalDate producedDate) {
-        this.producedDate = producedDate;
+        if(producedDate == null)
+            this.producedDate = LocalDate.now();
+        else if (producedDate != LocalDate.now())
+            this.producedDate = producedDate;
+        else
+            this.producedDate = LocalDate.now();
     }
 
     public LocalDate getExpiryDate() {
