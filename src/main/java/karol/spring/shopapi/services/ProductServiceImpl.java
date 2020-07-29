@@ -86,11 +86,13 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDTO updateProductById(Long id, ProductDTO productDTO) {
 
-        List<Category> categories = categoryRepository.findAll();
+        if (productDTO.getCategory() != null){
+            List<Category> categories = categoryRepository.findAll();
 
-        for (Category cat: categories) {
-            if(cat.getName().equals(productDTO.getCategory().getName())){
-                productDTO.setCategory(cat);
+            for (Category cat : categories) {
+                if (cat.getName().equals(productDTO.getCategory().getName())) {
+                    productDTO.setCategory(cat);
+                }
             }
         }
 
@@ -110,7 +112,6 @@ public class ProductServiceImpl implements ProductService {
                 product.setExpiryDate(productDTO.getExpiryDate());
             if(productDTO.getProducedDate() != null)
                 product.setProducedDate(productDTO.getProducedDate());
-            System.out.println(productDTO.getCategory().getName());
             if(productDTO.getCategory() != null)
                 product.setCategory(productDTO.getCategory());
 
