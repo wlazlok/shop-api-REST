@@ -30,6 +30,12 @@ To open and run this project, follow this commands:
 
 Then u can test features using eg. Postman
 
+To show Api Documentation:
+1. git clone https://github.com/wlazlok/shop-api-REST.git
+2. cd .\shop-api-REST\
+3. mvn spring-boot:run
+4. open at browser: http://localhost:8080/swagger-ui.html#/
+
 ## Features
 1. Category
      - Create new category
@@ -51,7 +57,6 @@ Then u can test features using eg. Postman
      - Show details of each product
      - Delete product
      - Update product
-
 
 ## Author
 * **[Karol Wlazło](https://github.com/wlazlok)**
