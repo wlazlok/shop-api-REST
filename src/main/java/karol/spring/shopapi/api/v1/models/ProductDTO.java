@@ -1,6 +1,7 @@
 package karol.spring.shopapi.api.v1.models;
 
 import karol.spring.shopapi.models.Category;
+import karol.spring.shopapi.models.Producer;
 import karol.spring.shopapi.repositories.CategoryRepository;
 import lombok.Data;
 import java.time.LocalDate;
@@ -13,7 +14,7 @@ public class ProductDTO {
     private String name;
     private Double price;
     private String description;
-    private String producer;
+    private Producer producer;
     private LocalDate producedDate;
     private LocalDate expiryDate;
     private Category category;
@@ -50,11 +51,11 @@ public class ProductDTO {
         this.description = description;
     }
 
-    public String getProducer() {
+    public Producer getProducer() {
         return producer;
     }
 
-    public void setProducer(String producer) {
+    public void setProducer(Producer producer) {
         this.producer = producer;
     }
 

@@ -1,14 +1,15 @@
 package karol.spring.shopapi.services;
 
 import karol.spring.shopapi.api.v1.mappers.ProductMapper;
-import karol.spring.shopapi.api.v1.models.CategoryDTO;
 import karol.spring.shopapi.api.v1.models.ProductDTO;
 import karol.spring.shopapi.api.v1.models.ProductDTOShortView;
 import karol.spring.shopapi.exceptions.ValueExsistException;
 import karol.spring.shopapi.exceptions.ValueNotFoundException;
 import karol.spring.shopapi.models.Category;
+import karol.spring.shopapi.models.Producer;
 import karol.spring.shopapi.models.Product;
 import karol.spring.shopapi.repositories.CategoryRepository;
+import karol.spring.shopapi.repositories.ProducerRepository;
 import karol.spring.shopapi.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +22,13 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
     private final CategoryRepository categoryRepository;
+    private final ProducerRepository producerRepository;
 
-    public ProductServiceImpl(ProductRepository productRepository, ProductMapper productMapper, CategoryRepository categoryRepository) {
+    public ProductServiceImpl(ProductRepository productRepository, ProductMapper productMapper, CategoryRepository categoryRepository, ProducerRepository producerRepository) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
         this.categoryRepository = categoryRepository;
+        this.producerRepository = producerRepository;
     }
 
 
@@ -96,6 +99,15 @@ public class ProductServiceImpl implements ProductService {
             }
         }
 
+        if(productDTO.getProducer() != null){
+            List<Producer> producers = producerRepository.findAll();
+
+            for (Producer producer : producers){
+                if(producer.getName().equals(productDTO.getProducer().getName()))
+                    productDTO.setProducer(producer);
+            }
+        }
+
         return productRepository.findById(id).map(product ->{
 
             checkIfValueNotExsistInBase(productDTO);
@@ -106,10 +118,10 @@ public class ProductServiceImpl implements ProductService {
                 product.setPrice(productDTO.getPrice());
             if(productDTO.getDescription() != null)
                 product.setDescription(productDTO.getDescription());
-            if(productDTO.getProducer() != null)
-                product.setProducer(productDTO.getProducer());
             if(productDTO.getExpiryDate() != null)
                 product.setExpiryDate(productDTO.getExpiryDate());
+            if(productDTO.getProducer() != null)
+                product.setProducer(productDTO.getProducer());
             if(productDTO.getProducedDate() != null)
                 product.setProducedDate(productDTO.getProducedDate());
             if(productDTO.getCategory() != null)

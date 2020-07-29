@@ -20,7 +20,11 @@ public class Product {
     private String name;
     private Double price;
     private String description;
-    private String producer;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name="producer_id")
+    private Producer producer;
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate producedDate;
@@ -65,14 +69,6 @@ public class Product {
         this.description = description;
     }
 
-    public String getProducer() {
-        return producer;
-    }
-
-    public void setProducer(String producer) {
-        this.producer = producer;
-    }
-
     public LocalDate getProducedDate() {
         return producedDate;
     }
@@ -97,4 +93,11 @@ public class Product {
         this.category = category;
     }
 
+    public Producer getProducer() {
+        return producer;
+    }
+
+    public void setProducer(Producer producer) {
+        this.producer = producer;
+    }
 }
