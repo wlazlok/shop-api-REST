@@ -61,3 +61,6 @@ To show Api Documentation:
 ## Author
 * **[Karol Wlazło](https://github.com/wlazlok)**
 * **email:** kwlazo9@gmail.com
+
+## Screenshots
+![Index page](./images/homePage.PNG)
