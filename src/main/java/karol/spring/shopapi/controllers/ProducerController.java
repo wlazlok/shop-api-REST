@@ -1,5 +1,6 @@
 package karol.spring.shopapi.controllers;
 
+import karol.spring.shopapi.api.v1.models.ProducerDTO;
 import karol.spring.shopapi.api.v1.models.ProducerDTOShortViewList;
 import karol.spring.shopapi.services.ProducerService;
 import org.springframework.http.HttpStatus;
@@ -22,4 +23,9 @@ public class ProducerController {
         return new ProducerDTOShortViewList(producerService.getAllProducers());
     }
 
+    @GetMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    private ProducerDTO getProducerById(@PathVariable Long id){
+        return producerService.getProducerById(id);
+    }
 }

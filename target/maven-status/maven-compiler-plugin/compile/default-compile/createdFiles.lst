@@ -9,6 +9,7 @@ karol\spring\shopapi\api\v1\models\ProductDTO.class
 karol\spring\shopapi\services\ProducerServiceImpl.class
 karol\spring\shopapi\boostrap\LoadData.class
 karol\spring\shopapi\api\v1\models\CategoryDTOShortView.class
+karol\spring\shopapi\api\v1\models\ProducerDTO.class
 karol\spring\shopapi\services\CategoryService.class
 karol\spring\shopapi\models\Category.class
 karol\spring\shopapi\repositories\ProductRepository.class

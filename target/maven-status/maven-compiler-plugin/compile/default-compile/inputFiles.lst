@@ -8,6 +8,7 @@ C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\services
 C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\controllers\ProducerController.java
 C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\api\v1\models\ProducerDTOShortViewList.java
 C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\exceptions\ValueExsistException.java
+C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\api\v1\models\ProducerDTO.java
 C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\config\SwaggerConfig.java
 C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\models\Product.java
 C:\Users\Karol\Desktop\shop-api-REST\src\main\java\karol\spring\shopapi\services\ProductServiceImpl.java
