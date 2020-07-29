@@ -19,31 +19,31 @@ public class ProducerController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    private ProducerDTOShortViewList getAllProducers(){
+    public ProducerDTOShortViewList getAllProducers(){
         return new ProducerDTOShortViewList(producerService.getAllProducers());
     }
 
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    private ProducerDTO getProducerById(@PathVariable Long id){
+    public ProducerDTO getProducerById(@PathVariable Long id){
         return producerService.getProducerById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    private ProducerDTO createNewProducer(@RequestBody ProducerDTO producerDTO){
+    public ProducerDTO createNewProducer(@RequestBody ProducerDTO producerDTO){
         return producerService.createNewProducer(producerDTO);
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    private void deleteProducerById(@PathVariable Long id){
+    public void deleteProducerById(@PathVariable Long id){
         producerService.deleteProducerById(id);
     }
 
     @PatchMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    private ProducerDTO updateProducer(@PathVariable Long id, @RequestBody ProducerDTO producerDTO){
+    public ProducerDTO updateProducer(@PathVariable Long id, @RequestBody ProducerDTO producerDTO){
         return producerService.updateProducer(id, producerDTO);
     }
 }
