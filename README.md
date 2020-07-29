@@ -63,4 +63,6 @@ To show Api Documentation:
 * **email:** kwlazo9@gmail.com
 
 ## Screenshots
-![Index page](./images/homePage.PNG)
+![category controller api dosc](./images/category.PNG)
+![producer controller api dosc](./images/producer.PNG)
+![product controller api dosc](./images/product.PNG)
