@@ -41,4 +41,9 @@ public class ProducerController {
         producerService.deleteProducerById(id);
     }
 
+    @PatchMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    private ProducerDTO updateProducer(@PathVariable Long id, @RequestBody ProducerDTO producerDTO){
+        return producerService.updateProducer(id, producerDTO);
+    }
 }

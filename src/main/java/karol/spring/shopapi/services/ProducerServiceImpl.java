@@ -76,6 +76,20 @@ public class ProducerServiceImpl implements ProducerService {
         producerRepository.deleteById(id);
     }
 
+    @Override
+    public ProducerDTO updateProducer(Long id, ProducerDTO producerDTO) {
+
+        return producerRepository.findById(id).map(producer ->{
+
+            if(producerDTO.getName() != null)
+                producer.setName(producerDTO.getName());
+
+            return producerMapper.producerToProducerDTO(producerRepository.save(producer));
+
+        }).orElseThrow(ValueNotFoundException::new);
+
+    }
+
     private void checkIfValueNotExsistInBase(ProducerDTO producerDTO) {
         List<Producer> categories = producerRepository.findAll();
         for (Producer producer : categories) {
