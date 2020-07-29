@@ -39,4 +39,10 @@ public class ProductController {
     public void deleteProductById(@PathVariable Long id){
         productService.deleteById(id);
     }
+
+    @PatchMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ProductDTO updateProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO){
+        return productService.updateProductById(id, productDTO);
+    }
 }

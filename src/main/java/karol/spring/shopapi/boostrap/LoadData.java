@@ -46,9 +46,6 @@ public class LoadData implements CommandLineRunner {
         categoryRepository.save(magazines);
         productRepository.save(niceBook);
 
-        System.out.println("List size: " + books.getProducts().size());
-        System.out.println("Cateogry: " + niceBook.getCategory());
-
         Category noCateogry = new Category();
         noCateogry.setName("No Category");
         noCateogry.setId(10L);

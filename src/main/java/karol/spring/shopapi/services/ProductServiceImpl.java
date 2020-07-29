@@ -1,8 +1,10 @@
 package karol.spring.shopapi.services;
 
 import karol.spring.shopapi.api.v1.mappers.ProductMapper;
+import karol.spring.shopapi.api.v1.models.CategoryDTO;
 import karol.spring.shopapi.api.v1.models.ProductDTO;
 import karol.spring.shopapi.api.v1.models.ProductDTOShortView;
+import karol.spring.shopapi.exceptions.ValueExsistException;
 import karol.spring.shopapi.exceptions.ValueNotFoundException;
 import karol.spring.shopapi.models.Category;
 import karol.spring.shopapi.models.Product;
@@ -79,5 +81,49 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void deleteById(Long id) {
         productRepository.deleteById(id);
+    }
+
+    @Override
+    public ProductDTO updateProductById(Long id, ProductDTO productDTO) {
+
+        List<Category> categories = categoryRepository.findAll();
+
+        for (Category cat: categories) {
+            if(cat.getName().equals(productDTO.getCategory().getName())){
+                productDTO.setCategory(cat);
+            }
+        }
+
+        return productRepository.findById(id).map(product ->{
+
+            checkIfValueNotExsistInBase(productDTO);
+
+            if(productDTO.getName() != null)
+                product.setName(productDTO.getName());
+            if(productDTO.getPrice() != null)
+                product.setPrice(productDTO.getPrice());
+            if(productDTO.getDescription() != null)
+                product.setDescription(productDTO.getDescription());
+            if(productDTO.getProducer() != null)
+                product.setProducer(productDTO.getProducer());
+            if(productDTO.getExpiryDate() != null)
+                product.setExpiryDate(productDTO.getExpiryDate());
+            if(productDTO.getProducedDate() != null)
+                product.setProducedDate(productDTO.getProducedDate());
+            System.out.println(productDTO.getCategory().getName());
+            if(productDTO.getCategory() != null)
+                product.setCategory(productDTO.getCategory());
+
+            return productMapper.productToProductDTO(productRepository.save(product));
+
+        }).orElseThrow(ValueNotFoundException::new);
+    }
+
+    private void checkIfValueNotExsistInBase(ProductDTO productDTO) {
+        List<Product> categories = productRepository.findAll();
+        for (Product prod : categories) {
+            if (prod.getName().equals(productDTO.getName()))
+                throw new ValueExsistException();
+        }
     }
 }
