@@ -12,4 +12,6 @@ public interface ProducerService {
     ProducerDTO getProducerById(Long id);
 
     ProducerDTO createNewProducer(ProducerDTO producerDTO);
+
+    void deleteProducerById(Long id);
 }

@@ -1,15 +1,15 @@
 package karol.spring.shopapi.services;
 
 import karol.spring.shopapi.api.v1.mappers.ProducerMapper;
-import karol.spring.shopapi.api.v1.models.CategoryDTO;
 import karol.spring.shopapi.api.v1.models.ProducerDTO;
 import karol.spring.shopapi.api.v1.models.ProducerDTOShortView;
 import karol.spring.shopapi.exceptions.NullValueException;
 import karol.spring.shopapi.exceptions.ValueExsistException;
 import karol.spring.shopapi.exceptions.ValueNotFoundException;
-import karol.spring.shopapi.models.Category;
 import karol.spring.shopapi.models.Producer;
+import karol.spring.shopapi.models.Product;
 import karol.spring.shopapi.repositories.ProducerRepository;
+import karol.spring.shopapi.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,10 +20,12 @@ public class ProducerServiceImpl implements ProducerService {
 
     private final ProducerRepository producerRepository;
     private final ProducerMapper producerMapper;
+    protected final ProductRepository productRepository;
 
-    public ProducerServiceImpl(ProducerRepository producerRepository, ProducerMapper producerMapper) {
+    public ProducerServiceImpl(ProducerRepository producerRepository, ProducerMapper producerMapper, ProductRepository productRepository) {
         this.producerRepository = producerRepository;
         this.producerMapper = producerMapper;
+        this.productRepository = productRepository;
     }
 
     @Override
@@ -57,6 +59,21 @@ public class ProducerServiceImpl implements ProducerService {
         ProducerDTO returnDTO = producerMapper.producerToProducerDTO(savedProducer);
 
         return returnDTO;
+    }
+
+    @Override
+    public void deleteProducerById(Long id) {
+        Producer producer = producerRepository.findById(id).get();
+
+        for (Product prod: producer.getProducts()) {
+            prod.setProducer(null);
+            productRepository.save(prod);
+        }
+
+        producer.getProducts().clear();
+        producerRepository.save(producer);
+
+        producerRepository.deleteById(id);
     }
 
     private void checkIfValueNotExsistInBase(ProducerDTO producerDTO) {

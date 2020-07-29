@@ -2,7 +2,6 @@ package karol.spring.shopapi.controllers;
 
 import karol.spring.shopapi.api.v1.models.ProducerDTO;
 import karol.spring.shopapi.api.v1.models.ProducerDTOShortViewList;
-import karol.spring.shopapi.models.Producer;
 import karol.spring.shopapi.services.ProducerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -35,4 +34,11 @@ public class ProducerController {
     private ProducerDTO createNewProducer(@RequestBody ProducerDTO producerDTO){
         return producerService.createNewProducer(producerDTO);
     }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    private void deleteProducerById(@PathVariable Long id){
+        producerService.deleteProducerById(id);
+    }
+
 }
