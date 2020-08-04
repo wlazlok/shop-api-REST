@@ -43,7 +43,7 @@ public class CategoryController {
         return categoryService.getCategoryById(id);
     }
 
-    @PatchMapping("{id}")
+    @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public CategoryDTO updateCategory(@PathVariable Long id, @RequestBody CategoryDTO categoryDTO){
         return categoryService.updateCategoryById(id, categoryDTO);
